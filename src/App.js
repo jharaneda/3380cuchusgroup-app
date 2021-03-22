@@ -7,17 +7,16 @@ import TodoListFormJar86 from "./Components/TodoListFormJar86/TodoListFormJar86"
 
 function App() {
   return (
-    <div className="App">
+    <div className="container">
       <Router>
-        <NavbarJar86>
+        <NavbarJar86/>
           <Switch>
             <Route path='/' exact component={HeaderHealthJar86} />
             <Route path='/incident' exact component={IncidentFormJar86} />
             <Route path='/profile' exact component={ProfileFormJar86} />
             <Route path='/todolist' exact component={TodoListFormJar86} />
-            {/* <Route path='/' exact component={HeaderHealthJar86} /> */}
+            <Route path='/weather' exact component={HeaderHealthJar86} />
           </Switch>
-        </NavbarJar86>
       </Router>
     </div>
   );

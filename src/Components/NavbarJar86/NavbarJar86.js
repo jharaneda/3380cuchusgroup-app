@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 const NavbarJar86 = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand">
+      <a href='/#' className="navbar-brand">
         Hotel Canada
       </a>
       <button
