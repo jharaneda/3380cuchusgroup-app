@@ -10,7 +10,10 @@ import IncidentFormJar86 from "./Components/IncidentFormJar86/IncidentFormJar86"
 import NavbarJar86 from "./Components/NavbarJar86/NavbarJar86";
 import ProfileFormJar86 from "./Components/ProfileFormJar86/ProfileFormJar86";
 import TodoListFormJar86 from "./Components/TodoListFormJar86/TodoListFormJar86";
-import { getTenantList, addTodo } from "./Components/ServicesJar86/starflowServicesJar86";
+import {
+  getTenantList,
+  addTodo,
+} from "./Components/ServicesJar86/starflowServicesJar86";
 import HealthFormJar86 from "./Components/HealthFormJar86/HealthFormJar86";
 
 function App() {
@@ -65,9 +68,14 @@ function App() {
   }
 
   async function addTodoFunction(e) {
-    e.preventDefault()
-    await addTodo(todo)
-    setTodo({})
+    e.preventDefault();
+    await addTodo(todo);
+    setTodo({
+      expiration_date: "",
+      room_number: "",
+      priority: "Choose priority",
+      comments: "",
+    });
     // refreshPage()
   }
 
@@ -113,7 +121,11 @@ function App() {
       {/* <Route path="/weather" exact component={HeaderHealthJar86} /> */}
       {/* </Switch> */}
       {/* </Router> */}
-      <TodoListFormJar86 update={updateTodo} addAction={addTodoFunction}/>
+      <TodoListFormJar86
+        update={updateTodo}
+        addAction={addTodoFunction}
+        todoState={todo}
+      />
     </div>
   );
 }

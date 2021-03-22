@@ -11,6 +11,7 @@ const TodoListFormJar86 = (props) => {
             type="date"
             className="form-control"
             placeholder="Expiration Date"
+            value={props.todoState.expiration_date}
             onChange={props.update}
           />
           <label className="form-label" htmlFor="floatingInput">
@@ -23,6 +24,7 @@ const TodoListFormJar86 = (props) => {
             type="text"
             className="form-control"
             placeholder="200"
+            value={props.todoState.room_number}
             onChange={props.update}
           />
           <label className="form-label" htmlFor="floatingInput">
@@ -31,12 +33,12 @@ const TodoListFormJar86 = (props) => {
         </div>
         <div className="col-md-3 form-floating mb-3">
           <select id="priority" className="form-select" onChange={props.update}>
-            <option>Choose priority</option>
+            <option selected>Choose priority</option>
             <option>Low</option>
             <option>Medium</option>
             <option>High</option>
           </select>
-          <label htmlFor="floatingSelect" className="form-label">
+          <label htmlFor="floatingSelect" className="form-label" value={props.todoState.priority}>
             Priority
           </label>
         </div>
@@ -46,6 +48,7 @@ const TodoListFormJar86 = (props) => {
             className="form-control"
             placeholder="Comments"
             style={{ height: "100px" }}
+            value={props.todoState.comments}
             onChange={props.update}
           ></textarea>
           <label htmlFor="floatingTextarea" className="form-label">
