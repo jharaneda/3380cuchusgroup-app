@@ -1,5 +1,5 @@
 import React from 'react'
-import HealthForm from '../HeaderHealthJar86/HeaderHealthJar86'
+import HealthFormJar86 from '../HealthFormJar86/HealthFormJar86'
 
 const HeaderHealthJar86 = () => {
     return (
@@ -19,7 +19,7 @@ const HeaderHealthJar86 = () => {
                             <th className='col-1'>View Profile</th>
                         </tr>
                     </thead>
-                        <HealthForm />
+                        <HealthFormJar86 />
                 </table>
             </form>
         
