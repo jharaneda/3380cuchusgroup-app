@@ -19,7 +19,7 @@ function App() {
   async function refreshPage() {
     setLoading(true);
 
-    getTenantList()
+    await getTenantList()
       .then((json) => {
         setTenantList(json);
         setLoading(false);
