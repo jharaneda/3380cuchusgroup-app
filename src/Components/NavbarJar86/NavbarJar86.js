@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 const NavbarJar86 = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a href='/#' className="navbar-brand">
+      <a href='#' className="navbar-brand">
         Hotel Canada
       </a>
       <button
@@ -21,7 +21,7 @@ const NavbarJar86 = () => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item active">
-            <Link to="/" className="nav-link active" aria-current="page">
+            <Link as to="/" className="nav-link active" aria-current="page">
               Health and Wellness
             </Link>
           </li>
@@ -44,11 +44,11 @@ const NavbarJar86 = () => {
               Incident Report
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link to="/weather" className="nav-link active" aria-current="page">
               Weather widget
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>

@@ -1,7 +1,7 @@
 import React from "react";
 import HealthFormJar86 from "../HealthFormJar86/HealthFormJar86";
 
-const HeaderHealthJar86 = ({ tenants }) => {
+const HeaderHealthJar86 = ({ tenants, viewProfile }) => {
   return (
     <form className="checkForm">
       <h1>Health and Wellness Report</h1>
@@ -25,7 +25,7 @@ const HeaderHealthJar86 = ({ tenants }) => {
             <th className="col-1">View Profile</th>
           </tr>
         </thead>
-        <HealthFormJar86 tenants={tenants} />
+        <HealthFormJar86 tenants={tenants} viewProfile={viewProfile} />
       </table>
     </form>
   );

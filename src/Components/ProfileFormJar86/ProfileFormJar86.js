@@ -1,7 +1,7 @@
 import React from "react";
 import profileImage from "../Images/profile.png";
 
-const ProfileFormJar86 = () => {
+const ProfileFormJar86 = ({viewProfile}) => {
   return (
     <div>
       <form className="row g-3">
