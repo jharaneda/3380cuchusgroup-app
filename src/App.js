@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   BrowserRouter,
-  BrowserRouter as Router,
   Route,
   Switch,
 } from "react-router-dom";
@@ -92,15 +91,12 @@ function App() {
 
   return (
     <div className="container">
-      {/* <Router>
+      <BrowserRouter>
         <NavbarJar86 />
         <Switch>
-          <Route path="/incident" exact component={IncidentFormJar86} />
-          <Route path="/profile" exact component={ProfileFormJar86} />
-          <Route path="/todolist" exact component={TodoListFormJar86} />
-          <Route path="/weather" exact component={TodoListFormJar86} />
           <Route
             path="/"
+            exact 
             render={(props) => (
               <HeaderHealthJar86
                 {...props}
@@ -109,23 +105,12 @@ function App() {
               />
             )}
           />
+          <Route path="/profile" component={ProfileFormJar86} />
+          <Route path="/todolist" component={TodoListFormJar86} />
+          <Route path="/incident" component={IncidentFormJar86} />
         </Switch>
-      </Router> */}
-      {/* <Router> */}
-      {/* <NavbarJar86 /> */}
-      {/* <Switch> */}
-      {/* <Route path="/" exact component={HeaderHealthJar86} /> */}
-      {/* <Route path="/profile" exact component={ProfileFormJar86} /> */}
-      {/* <Route path="/todolist" exact component={TodoListFormJar86} /> */}
-      {/* <Route path="/incident" exact component={IncidentFormJar86} /> */}
-      {/* <Route path="/weather" exact component={HeaderHealthJar86} /> */}
-      {/* </Switch> */}
-      {/* </Router> */}
-      <TodoListFormJar86
-        update={updateTodo}
-        addAction={addTodoFunction}
-        todoState={todo}
-      />
+      </BrowserRouter>
+
     </div>
   );
 }
