@@ -1,9 +1,9 @@
 import React from "react";
 import HealthFormJar86 from "../HealthFormJar86/HealthFormJar86";
 
-const HeaderHealthJar86 = ({ tenants, viewProfile }) => {
+const HeaderHealthJar86 = ({ tenants, viewProfile, update }) => {
   return (
-    <form className="checkForm">
+    <form className="checkForm row border-dark border rounded float-start">
       <h1>Health and Wellness Report</h1>
       <table className="table">
         <thead>
@@ -12,7 +12,7 @@ const HeaderHealthJar86 = ({ tenants, viewProfile }) => {
           </tr>
           <tr>
             <th>
-              <input type="text" placeholder="Search here..."></input>
+              <input id='searchBar' type="text" placeholder="Search here..." onChange={(e) => update(e)}></input>
             </th>
           </tr>
           <tr>

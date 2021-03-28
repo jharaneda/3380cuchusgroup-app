@@ -40,9 +40,11 @@ const HealthFormJar86 = ({ tenants, viewProfile }) => {
             />
           </td>
           <td>
-            <button className="btn btn-danger">View Profile</button>
+            {/* <Link to='/profile'> */}
+            <button id={tenant.room} className="btn btn-danger" onClick={(e) => viewProfile(e, tenant.room)}><Link to='/profile' role='button' className='btn btn-danger'>View Profile</Link></button>
+            {/* </Link> */}
           </td>
-          {/* onClick={(e) => viewProfile(tenant.room)} */}
+          
         </tr>
       ))}
     </tbody>
