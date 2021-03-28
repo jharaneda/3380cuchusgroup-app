@@ -8,6 +8,8 @@ import TodoListFormJar86 from "./Components/TodoListFormJar86/TodoListFormJar86"
 import {
   getTenantList,
   addTodo,
+  addIncident,
+  getIncidentReport,
 } from "./Components/ServicesJar86/starflowServicesJar86";
 // import {useHistory} from 'react-router'
 
@@ -32,7 +34,17 @@ function App() {
     priority: "",
     comments: "",
   });
-  const [incidents, setIncidents] = useState();
+  const [incidents, setIncidents] = useState([
+    {
+      incident_date: "",
+      incident_time: "",
+      type_incident: "",
+      staff_name: "",
+      VPD_called: "",
+      room: "",
+      comments: "",
+    },
+  ]);
   const [currentIncident, setCurrentIncident] = useState();
   const [queryFilter, setQueryFilter] = useState({ searchBar: "" });
   const [todayDate, setTodayDate] = useState();
@@ -61,6 +73,15 @@ function App() {
         console.error(err);
         setError(err);
       });
+      await getIncidentReport()
+      .then((json) => {
+        setIncidents(json)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.log(err)
+        setError(err)
+      })
   }
 
   //manage onChange of Todo Form
@@ -125,6 +146,22 @@ function App() {
     });
     refreshPage();
   }
+
+  async function addIncidentFunction(e) {
+    e.preventDefault();
+    await addIncident(currentIncident);
+    setCurrentIncident({
+      incident_date: "",
+      incident_time: "",
+      type_incident: "",
+      staff_name: "",
+      VPD_called: "",
+      room: "",
+      comments: "",
+    });
+    refreshPage();
+  }
+
   //filter by any field from the tenant list
   function search(rows) {
     if (queryFilter.searchBar === "") return tenantList;
@@ -212,6 +249,8 @@ function App() {
                 update={updateIncident}
                 currentIncident={currentIncident}
                 date={todayDate}
+                incidents={incidents}
+                addAction={addIncidentFunction}
               />
             )}
           />

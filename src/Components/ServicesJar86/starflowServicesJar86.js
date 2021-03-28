@@ -27,10 +27,20 @@ export async function addTodo(newTodo) {
   const todoData = JSON.stringify(newTodo);
   console.log("todo function")
   console.log(todoData)
-  //   return fetch("http://localhost:8000/cartJar86", {
   return fetch("http://localhost:8000/todolist", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: todoData,
+  }).then((response) => response.json());
+}
+
+export async function addIncident(newIncident) {
+  const incidentData = JSON.stringify(newIncident);
+  console.log("todo function")
+  console.log(incidentData)
+  return fetch("http://localhost:8000/incident", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: incidentData,
   }).then((response) => response.json());
 }

@@ -1,6 +1,7 @@
 import React from "react";
+import IncidentListJar86 from "../IncidentListJar86/IncidentListJar86";
 
-const IncidentFormJar86 = ({ update, currentIncident, date }) => {
+const IncidentFormJar86 = ({ update, incidents, date, addAction }) => {
   return (
     <div>
       <div className="row border-dark border rounded float-start">
@@ -106,13 +107,14 @@ const IncidentFormJar86 = ({ update, currentIncident, date }) => {
               </tr>
               <tr>
                 <td className="col-md-3 form-floating mb-3" colSpan="5">
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="btn btn-primary" onClick={(e) => addAction(e)}>
                     Save Information
                   </button>
                 </td>
               </tr>
             </tbody>
           </table>
+          <IncidentListJar86 incidents={incidents} />
         </div>
       </div>
     </div>
