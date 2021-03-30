@@ -36,7 +36,6 @@ export async function addTodo(newTodo) {
 
 export async function addIncident(newIncident) {
   const incidentData = JSON.stringify(newIncident);
-  console.log("todo function")
   console.log(incidentData)
   return fetch("http://localhost:8000/incident", {
     method: "POST",

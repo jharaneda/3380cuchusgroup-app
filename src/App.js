@@ -48,6 +48,12 @@ function App() {
   const [currentIncident, setCurrentIncident] = useState();
   const [queryFilter, setQueryFilter] = useState({ searchBar: "" });
   const [todayDate, setTodayDate] = useState();
+  const [healthChecks, setHealthCheck] = useState({
+    morning_check: false,
+    evening_check: false,
+    night_check: false,
+  });
+    // const [nightCheck, setNightCheck] = useState(false);
 
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
@@ -110,6 +116,14 @@ function App() {
     setQueryFilter({
       ...queryFilter,
       [e.target.id]: e.target.value,
+    });
+  }
+  //manage onChange of HealthForm
+  function updateHealthForm(e) {
+    console.log("update health called")
+    setHealthCheck({
+      ...healthChecks,
+      [e.target.id]: e.target.checked,
     });
   }
 
@@ -216,6 +230,8 @@ function App() {
                 serchAction={search}
                 value={queryFilter}
                 update={updateSearchBar}
+                updateCheck={updateHealthForm}
+                healthChecks={healthChecks}
               />
             )}
           />

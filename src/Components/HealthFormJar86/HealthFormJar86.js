@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const HealthFormJar86 = ({ tenants, viewProfile }) => {
+const HealthFormJar86 = ({ tenants, viewProfile, updateCheck, healthChecks }) => {
   return (
     <tbody>
       {tenants.map((tenant, key) => (
@@ -11,32 +11,31 @@ const HealthFormJar86 = ({ tenants, viewProfile }) => {
             {tenant.first_name} {tenant.last_name}
           </td>
           <td>{tenant.birthdate}</td>
-          {/* <tr> */}
-          {/* <td>room</td>
-            <td>name</td>
-            <td>birthdate</td> */}
           <td>
             <input
               className="form-check-input"
               type="checkbox"
-              value=""
+              value={healthChecks.morningCheck}
               id="morning_check"
+              onChange={updateCheck}
             />
           </td>
           <td>
             <input
               className="form-check-input"
               type="checkbox"
-              value=""
+              // value={healthChecks[0].eveningCheck}
               id="evening_check"
+              onChange={updateCheck}
             />
           </td>
           <td>
             <input
               className="form-check-input"
               type="checkbox"
-              value=""
+              // value={healthChecks[0].nightCheck}
               id="night_check"
+              onChange={updateCheck}
             />
           </td>
           <td>

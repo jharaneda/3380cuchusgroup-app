@@ -21,7 +21,7 @@ const IncidentListJar86 = ({incidents}) => {
                             <td>{incident.incident_time}</td>
                             <td>{incident.type_incident}</td>
                             <td>{incident.staff_name}</td>
-                            <td>{incident.VPN_called}</td>
+                            <td>{incident.VPD_called}</td>
                             <td>{incident.room}</td>
                             <td>{incident.comments}</td>
                         </tr>

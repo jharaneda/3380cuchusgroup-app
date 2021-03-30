@@ -68,19 +68,20 @@ const IncidentFormJar86 = ({ update, incidents, date, addAction }) => {
                     Staff Name
                   </label>
                 </td>
-                <td className="col-md-3 form-floating mb-3">
-                  <input
-                    id="VPD_called"
-                    className="form-check-input form-floating"
-                    type="checkbox"
-                    value=""
-                    onChange={update}
-                  />
-                  911 Called?
-                </td>
               </tr>
               <tr>
-                <td className="col-md-3 form-floating mb-3">
+              <td className="col-md-2 form-floating mb-2">
+                  <select
+                    id="VPD_called"
+                    className="form-select form-floating"
+                    onChange={update}
+                  >
+                    <option>Yes</option>
+                    <option selected>No</option>
+                  </select>
+                  <label htmlFor="floatingSelect" className="form-label">911 Called?</label>
+                </td>
+                <td className="col-md-2 form-floating mb-2">
                   <input
                     id="room"
                     type="text"
@@ -92,12 +93,12 @@ const IncidentFormJar86 = ({ update, incidents, date, addAction }) => {
                     Room number
                   </label>
                 </td>
-                <td className="form-floating" colSpan="4">
+                <td className="form-floating" colSpan="3">
                   <textarea
                     id="comments"
                     className="form-control"
                     placeholder="Your comments..."
-                    style={{ height: "100px" }}
+                    style={{ height: "150px" }}
                     onChange={update}
                   ></textarea>
                   <label htmlFor="floatingTextarea" className="form-label ">
