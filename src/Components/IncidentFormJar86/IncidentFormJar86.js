@@ -16,8 +16,7 @@ const IncidentFormJar86 = ({ update, incidents, date, addAction }) => {
                     type="date"
                     className="form-control"
                     placeholder="Incident Date"
-                    onChange={update}
-                    value={date}
+                    onChange={(e) => update(e)}
                   />
                   <label className="form-label" htmlFor="floatingInput">
                     Incident Date
