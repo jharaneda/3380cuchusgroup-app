@@ -151,6 +151,7 @@ function App() {
     });
   }
 
+  //function that send and save the incident report by email
   function sendEmail(e) {
     e.preventDefault();
 
@@ -160,10 +161,10 @@ function App() {
     }, function(error) {
        console.log('FAILED...', error);
     });
-
       addIncidentFunction(e)
   }
 
+  //function that load the tenant profile information
   function activateProfile(e) {
     e.preventDefault();
     setProfileInputs({
