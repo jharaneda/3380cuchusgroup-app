@@ -1,7 +1,7 @@
 import React from "react";
 import IncidentListJar86 from "../IncidentListJar86/IncidentListJar86";
 
-const IncidentFormJar86 = ({ update, incidents, date, addAction }) => {
+const IncidentFormJar86 = ({ update, incidents, sendEmail, addAction }) => {
   return (
     <div>
       <div className="row border-dark border rounded float-start">
@@ -13,6 +13,7 @@ const IncidentFormJar86 = ({ update, incidents, date, addAction }) => {
                 <td className="col-md-3 form-floating mb-3">
                   <input
                     id="incident_date"
+                    name="incident_date"
                     type="date"
                     className="form-control"
                     placeholder="Incident Date"
@@ -25,6 +26,7 @@ const IncidentFormJar86 = ({ update, incidents, date, addAction }) => {
                 <td className="col-md-3 form-floating mb-3">
                   <input
                     id="incident_time"
+                    name="incident_time"
                     type="time"
                     className="form-control"
                     placeholder="Incident Time"
@@ -37,6 +39,7 @@ const IncidentFormJar86 = ({ update, incidents, date, addAction }) => {
                 <td className="col-md-3 form-floating mb-3">
                   <select
                     id="type_incident"
+                    name="type_incident"
                     className="form-select"
                     onChange={update}
                   >
@@ -58,6 +61,7 @@ const IncidentFormJar86 = ({ update, incidents, date, addAction }) => {
                 <td className="col-md-3 form-floating mb-3">
                   <input
                     id="staff_name"
+                    name="staff_name"
                     type="text"
                     className="form-control"
                     placeholder="John Smith"
@@ -72,6 +76,7 @@ const IncidentFormJar86 = ({ update, incidents, date, addAction }) => {
               <td className="col-md-2 form-floating mb-2">
                   <select
                     id="VPD_called"
+                    name="VPD_called"
                     className="form-select form-floating"
                     onChange={update}
                   >
@@ -83,6 +88,7 @@ const IncidentFormJar86 = ({ update, incidents, date, addAction }) => {
                 <td className="col-md-2 form-floating mb-2">
                   <input
                     id="room"
+                    name="room"
                     type="text"
                     className="form-control"
                     placeholder="200"
@@ -95,6 +101,7 @@ const IncidentFormJar86 = ({ update, incidents, date, addAction }) => {
                 <td className="form-floating" colSpan="3">
                   <textarea
                     id="comments"
+                    name="comments"
                     className="form-control"
                     placeholder="Your comments..."
                     style={{ height: "150px" }}
@@ -107,9 +114,14 @@ const IncidentFormJar86 = ({ update, incidents, date, addAction }) => {
               </tr>
               <tr>
                 <td className="col-md-3 form-floating mb-3" colSpan="5">
-                  <button type="submit" className="btn btn-primary" onClick={(e) => addAction(e)}>
+                  <button className="btn btn-primary" onClick={(e) => addAction(e)}>
                     Save Information
                   </button>
+                </td>
+              </tr>
+              <tr>
+              <td className="col-md-3 form-floating mb-3" colSpan="5">
+                  <button type="submit" className="btn btn-primary" onClick={(e) => sendEmail(e)} value='send'>Save & Send by email</button>
                 </td>
               </tr>
             </tbody>

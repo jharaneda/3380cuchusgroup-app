@@ -13,7 +13,7 @@ import {
   fetchWeather,
 } from "./Components/ServicesJar86/starflowServicesJar86";
 import WeatherWidgetJar86 from "./Components/WeatherWidgetJar86/WeatherWidgetJar86";
-// import {useHistory} from 'react-router'
+import emailjs from "emailjs-com";
 
 function App() {
   //states that will save all the information
@@ -149,6 +149,19 @@ function App() {
       ...healthChecks,
       [e.target.id]: e.target.checked,
     });
+  }
+
+  function sendEmail(e) {
+    e.preventDefault();
+
+    emailjs.send('default_service', 'template_8m29dei', currentIncident, 'user_RmfFpd8eArh23M8dsL2Aj')
+    .then(function(response) {
+       console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+       console.log('FAILED...', error);
+    });
+
+      addIncidentFunction(e)
   }
 
   function activateProfile(e) {
@@ -308,6 +321,7 @@ function App() {
                 date={todayDate}
                 incidents={incidents}
                 addAction={addIncidentFunction}
+                sendEmail={sendEmail}
               />
             )}
           />

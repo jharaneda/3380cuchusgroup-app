@@ -1,26 +1,11 @@
 import React from "react";
-import emailjs from "emailjs-com";
+
 
 const IncidentListJar86 = ({ incidents }) => {
   
-    function sendEmail(e) {
-        e.preventDefault();
-    
-        emailjs.sendForm('gmail', 'template_8m29dei', e.target, 'user_RmfFpd8eArh23M8dsL2Aj')
-          .then((result) => {
-              console.log(result.text);
-          }, (error) => {
-              console.log(error.text);
-          });
-      }
-
   return (
     <table className="table">
       <thead>
-          <tr>
-              <th><button onClick={(e) => sendEmail(e)} >Send email</button></th>
-              
-          </tr>
         <tr>
           <th>Incident Date</th>
           <th>Incident Time</th>
