@@ -1,7 +1,7 @@
 import React from "react";
 import profileImage from "../Images/profile.png";
 
-const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile }) => {
+const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile, saveAction }) => {
   return (
     <div className="row border-dark border rounded float-start">
       <form className="row g-3">
@@ -158,7 +158,7 @@ const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile 
         <div className="col-12">
           {(profileInputs.description === true) ? <button className="btn btn-primary" onClick={(e) => activateProfile(e)}>
             Edit Information
-          </button> : <button className='btn btn-primary'>Save Information</button>}
+          </button> : <button className='btn btn-primary' onClick={saveAction}>Save Information</button>}
           
         </div>
       </form>

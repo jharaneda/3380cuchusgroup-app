@@ -44,6 +44,17 @@ export async function addIncident(newIncident) {
   }).then((response) => response.json());
 }
 
+export async function updateTenantProfile(currentProfile) {
+  const profileData = JSON.stringify(currentProfile);
+  console.log("profileData desde services")
+  console.log(profileData)
+  return fetch("http://localhost:8000/tenants", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: profileData,
+  }).then((response) => response.json());
+}
+
 export async function fetchWeather(){
   const API_key = "462cd311fd45adffc615072fc4be6ad4"; //baneada
   const URL = `https://api.openweathermap.org/data/2.5/weather?q=Vancouver&appid=${API_key}&units=metric`;

@@ -11,6 +11,7 @@ import {
   addIncident,
   getIncidentReport,
   fetchWeather,
+  updateTenantProfile,
 } from "./Components/ServicesJar86/starflowServicesJar86";
 import WeatherWidgetJar86 from "./Components/WeatherWidgetJar86/WeatherWidgetJar86";
 import emailjs from "emailjs-com";
@@ -151,17 +152,35 @@ function App() {
     });
   }
 
+  //function that update the tenant profile information
+  async function updateProfileFunciton(e) {
+    e.preventDefault();
+    console.log("update profile was called");
+    console.log(currentTenant);
+    await updateTenantProfile(currentTenant);
+    refreshPage();
+  }
+
   //function that send and save the incident report by email
   function sendEmail(e) {
     e.preventDefault();
 
-    emailjs.send('default_service', 'template_8m29dei', currentIncident, 'user_RmfFpd8eArh23M8dsL2Aj')
-    .then(function(response) {
-       console.log('SUCCESS!', response.status, response.text);
-    }, function(error) {
-       console.log('FAILED...', error);
-    });
-      addIncidentFunction(e)
+    emailjs
+      .send(
+        "default_service",
+        "template_8m29dei",
+        currentIncident,
+        "user_RmfFpd8eArh23M8dsL2Aj"
+      )
+      .then(
+        function (response) {
+          console.log("SUCCESS!", response.status, response.text);
+        },
+        function (error) {
+          console.log("FAILED...", error);
+        }
+      );
+    addIncidentFunction(e);
   }
 
   //function that load the tenant profile information
@@ -297,6 +316,7 @@ function App() {
                 update={updateProfile}
                 profileInputs={profileInputs}
                 activateProfile={activateProfile}
+                saveAction={updateProfileFunciton}
               />
             )}
           />
