@@ -1,14 +1,13 @@
 import React from "react";
 import profileImage from "../Images/profile.png";
 
-const ProfileFormJar86 = ({ curreTenant, update }) => {
+const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile }) => {
   return (
     <div className="row border-dark border rounded float-start">
       <form className="row g-3">
         <div className="row">
           <div className="col"></div>
           <div className="col-md-3">
-
             <img
               src={profileImage}
               style={{ width: "150px", height: "150px" }}
@@ -21,6 +20,7 @@ const ProfileFormJar86 = ({ curreTenant, update }) => {
         <div className="col-md-3 form-floating mb-3">
           <input
             id="first_name"
+            disabled={profileInputs.name}
             type="text"
             className="form-control"
             placeholder="Name"
@@ -34,6 +34,7 @@ const ProfileFormJar86 = ({ curreTenant, update }) => {
         <div className="col-md-3 form-floating mb-3">
           <input
             id="last_name"
+            disabled={profileInputs.lastName}
             type="text"
             className="form-control"
             placeholder="Last Name"
@@ -47,6 +48,7 @@ const ProfileFormJar86 = ({ curreTenant, update }) => {
         <div className="col-md-2 form-floating mb-3">
           <input
             id="room"
+            disabled={profileInputs.room}
             type="text"
             className="form-control"
             placeholder="200"
@@ -58,7 +60,7 @@ const ProfileFormJar86 = ({ curreTenant, update }) => {
           </label>
         </div>
         <div className="col-md-3 form-floating mb-3">
-          <select id="floor" className="form-select" onChange={update} value={curreTenant.floor}>
+          <select id="floor" className="form-select" onChange={update} value={curreTenant.floor} disabled={profileInputs.floor}>
             <option>Choose floor</option>
             <option>Second floor</option>
             <option>Third floor</option>
@@ -74,6 +76,7 @@ const ProfileFormJar86 = ({ curreTenant, update }) => {
         <div className="col-md-3 form-floating mb-3">
           <input
             id="phone"
+            disabled={profileInputs.phoneNumber}
             type="text"
             className="form-control"
             placeholder="604-899-4520"
@@ -98,6 +101,7 @@ const ProfileFormJar86 = ({ curreTenant, update }) => {
         <div className="col-md-3 form-floating mb-3">
           <input
             id="birthdate"
+            disabled={profileInputs.birthdate}
             type="date"
             className="form-control"
             placeholder="Birth-Date"
@@ -112,6 +116,7 @@ const ProfileFormJar86 = ({ curreTenant, update }) => {
         <div className="col-md-10 form-floating mb-3">
           <textarea
             id="meds_taken"
+            disabled={profileInputs.meds}
             className="form-control"
             placeholder="What meds are being given?"
             style={{ height: "100px" }}
@@ -125,6 +130,7 @@ const ProfileFormJar86 = ({ curreTenant, update }) => {
         <div className="col-md-10 form-floating mb-3">
           <textarea
             id="comments"
+            disabled={profileInputs.comments}
             className="form-control"
             placeholder="Your comments..."
             style={{ height: "100px" }}
@@ -138,6 +144,7 @@ const ProfileFormJar86 = ({ curreTenant, update }) => {
         <div className="col-md-10 form-floating mb-3">
           <textarea
             id="phsycal_description"
+            disabled={profileInputs.description}
             className="form-control"
             placeholder="Physical description..."
             style={{ height: "100px" }}
@@ -149,9 +156,10 @@ const ProfileFormJar86 = ({ curreTenant, update }) => {
           </label>
         </div>
         <div className="col-12">
-          <button type="submit" className="btn btn-primary">
-            Save Information
-          </button>
+          {(profileInputs.description === true) ? <button className="btn btn-primary" onClick={(e) => activateProfile(e)}>
+            Edit Information
+          </button> : <button className='btn btn-primary'>Save Information</button>}
+          
         </div>
       </form>
     </div>

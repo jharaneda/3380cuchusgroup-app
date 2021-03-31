@@ -43,3 +43,11 @@ export async function addIncident(newIncident) {
     body: incidentData,
   }).then((response) => response.json());
 }
+
+export async function fetchWeather(){
+  const API_key = "462cd311fd45adffc615072fc4be6ad4"; //baneada
+  const URL = `https://api.openweathermap.org/data/2.5/weather?q=Vancouver&appid=${API_key}&units=metric`;
+  return fetch(URL)
+  .then((response) => response.json())
+  };
+

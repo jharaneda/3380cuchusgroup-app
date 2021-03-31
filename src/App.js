@@ -10,7 +10,9 @@ import {
   addTodo,
   addIncident,
   getIncidentReport,
+  fetchWeather,
 } from "./Components/ServicesJar86/starflowServicesJar86";
+import WeatherWidgetJar86 from "./Components/WeatherWidgetJar86/WeatherWidgetJar86";
 // import {useHistory} from 'react-router'
 
 function App() {
@@ -53,7 +55,20 @@ function App() {
     evening_check: false,
     night_check: false,
   });
-    // const [nightCheck, setNightCheck] = useState(false);
+
+  const [apiWeather, setApiWeather] = useState();
+
+  const [profileInputs, setProfileInputs] = useState({
+    name: true,
+    lastName: true,
+    room: true,
+    floor: true,
+    phoneNumber: true,
+    birthdate: true,
+    meds: true,
+    comments: true,
+    description: true,
+  });
 
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
@@ -79,15 +94,24 @@ function App() {
         console.error(err);
         setError(err);
       });
-      await getIncidentReport()
+    await getIncidentReport()
       .then((json) => {
-        setIncidents(json)
-        setLoading(false)
+        setIncidents(json);
+        setLoading(false);
       })
       .catch((err) => {
-        console.log(err)
-        setError(err)
+        console.log(err);
+        setError(err);
+      });
+    await fetchWeather()
+      .then((json) => {
+        setApiWeather(json);
+        setLoading(false);
       })
+      .catch((err) => {
+        console.log(err);
+        setError(err);
+      });
   }
 
   //manage onChange of Todo Form
@@ -120,10 +144,25 @@ function App() {
   }
   //manage onChange of HealthForm
   function updateHealthForm(e) {
-    console.log("update health called")
+    console.log("update health called");
     setHealthCheck({
       ...healthChecks,
       [e.target.id]: e.target.checked,
+    });
+  }
+
+  function activateProfile(e) {
+    e.preventDefault();
+    setProfileInputs({
+      name: false,
+      lastName: false,
+      room: false,
+      floor: false,
+      phoneNumber: false,
+      birthdate: false,
+      meds: false,
+      comments: false,
+      description: false,
     });
   }
 
@@ -242,6 +281,8 @@ function App() {
               <ProfileFormJar86
                 curreTenant={currentTenant}
                 update={updateProfile}
+                profileInputs={profileInputs}
+                activateProfile={activateProfile}
               />
             )}
           />
@@ -269,6 +310,11 @@ function App() {
                 addAction={addIncidentFunction}
               />
             )}
+          />
+          <Route
+            path="/weather"
+            exact
+            render={(props) => <WeatherWidgetJar86 apiWeather={apiWeather} />}
           />
         </Switch>
       </BrowserRouter>

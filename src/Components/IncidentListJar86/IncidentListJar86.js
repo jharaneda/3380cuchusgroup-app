@@ -1,6 +1,7 @@
 import React from 'react'
 
 const IncidentListJar86 = ({incidents}) => {
+
     return (
         <table className="table">
                 <thead>
@@ -17,7 +18,7 @@ const IncidentListJar86 = ({incidents}) => {
                 <tbody>
                     {incidents.map((incident, key) => (
                         <tr key={key}>
-                            <td>{incident.incident_date}</td>
+                            <td name='incident_date'>{incident.incident_date}</td>
                             <td>{incident.incident_time}</td>
                             <td>{incident.type_incident}</td>
                             <td>{incident.staff_name}</td>

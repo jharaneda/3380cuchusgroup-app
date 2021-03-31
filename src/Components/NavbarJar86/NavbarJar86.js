@@ -44,11 +44,11 @@ const NavbarJar86 = () => {
               Incident Report
             </Link>
           </li>
-          {/* <li className="nav-item">
+          <li className="nav-item">
             <Link to="/weather" className="nav-link active" aria-current="page">
               Weather widget
             </Link>
-          </li> */}
+          </li>
         </ul>
       </div>
     </nav>
