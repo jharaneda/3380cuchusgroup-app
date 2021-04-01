@@ -1,17 +1,17 @@
 import React from "react";
 import HealthFormJar86 from "../HealthFormJar86/HealthFormJar86";
 
-const HeaderHealthJar86 = ({ tenants, viewProfile, update, updateCheck,healthChecks }) => {
+const HeaderHealthJar86 = ({ tenants, viewProfile, update, updateCheck,healthChecks, date }) => {
   return (
     <form className="checkForm row border-dark border rounded float-start">
       <h1>Health and Wellness Report</h1>
       <table className="table">
         <thead>
           <tr>
-            <td>Fecha de hoy</td>
+            <td colSpan='2'><h3>Today date: {date}</h3></td>
           </tr>
           <tr>
-            <th>
+            <th colSpan='7'>
               <input id='searchBar' type="text" placeholder="Search here..." onChange={(e) => update(e)}></input>
             </th>
           </tr>

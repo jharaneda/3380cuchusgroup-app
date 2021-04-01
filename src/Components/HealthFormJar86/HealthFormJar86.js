@@ -15,9 +15,9 @@ const HealthFormJar86 = ({ tenants, viewProfile, updateCheck, healthChecks }) =>
             <input
               className="form-check-input"
               type="checkbox"
-              value={healthChecks.morningCheck}
+              // value={healthChecks.morningCheck}
               id="morning_check"
-              onChange={updateCheck}
+              onChange={(e) => updateCheck(e, tenant.room)}
             />
           </td>
           <td>

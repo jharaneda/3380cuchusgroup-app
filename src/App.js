@@ -17,6 +17,7 @@ import WeatherWidgetJar86 from "./Components/WeatherWidgetJar86/WeatherWidgetJar
 import emailjs from "emailjs-com";
 
 function App() {
+
   //states that will save all the information
   const [tenantList, setTenantList] = useState([]);
   const [currentTenant, setCurrentTenant] = useState({
@@ -51,11 +52,7 @@ function App() {
   const [currentIncident, setCurrentIncident] = useState();
   const [queryFilter, setQueryFilter] = useState({ searchBar: "" });
   const [todayDate, setTodayDate] = useState();
-  const [healthChecks, setHealthCheck] = useState({
-    morning_check: false,
-    evening_check: false,
-    night_check: false,
-  });
+  const [healthChecks, setHealthCheck] = useState([]);
 
   const [apiWeather, setApiWeather] = useState();
 
@@ -113,6 +110,7 @@ function App() {
         console.log(err);
         setError(err);
       });
+      await today()
   }
 
   //manage onChange of Todo Form
@@ -144,10 +142,17 @@ function App() {
     });
   }
   //manage onChange of HealthForm
-  function updateHealthForm(e) {
+  function updateHealthForm(e, room) {
     console.log("update health called");
+    healthChecks.push({
+      room: room,
+      date: todayDate, 
+      [e.target.id]: e.target.checked,
+    })
     setHealthCheck({
       ...healthChecks,
+      room: room,
+      date: todayDate, 
       [e.target.id]: e.target.checked,
     });
   }
@@ -304,6 +309,7 @@ function App() {
                 update={updateSearchBar}
                 updateCheck={updateHealthForm}
                 healthChecks={healthChecks}
+                date={todayDate}
               />
             )}
           />

@@ -32,8 +32,8 @@ const TodoListFormJar86 = ({update, addAction, currentTodo}) => {
           </label>
         </div>
         <div className="col-md-3 form-floating mb-3">
-          <select id="priority" className="form-select" onChange={update}>
-            <option selected>Choose priority</option>
+          <select id="priority" className="form-select" onChange={update} defaultValue='Choose priority'>
+            <option>Choose priority</option>
             <option>Low</option>
             <option>Medium</option>
             <option>High</option>
