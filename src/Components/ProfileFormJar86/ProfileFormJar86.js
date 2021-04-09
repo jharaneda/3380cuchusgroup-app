@@ -1,7 +1,8 @@
 import React from "react";
 import profileImage from "../Images/profile.png";
+import IncidentsByProfile from "../IncidentsByProfile/IncidentsByProfile";
 
-const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile, saveAction }) => {
+const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile, saveAction, incidentsByProfile }) => {
   return (
     <div className="row border-dark border rounded float-start">
       <form className="row g-3">
@@ -143,7 +144,7 @@ const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile,
         </div>
         <div className="col-md-10 form-floating mb-3">
           <textarea
-            id="phsycal_description"
+            id="physical_description"
             disabled={profileInputs.description}
             className="form-control"
             placeholder="Physical description..."
@@ -159,9 +160,9 @@ const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile,
           {(profileInputs.description === true) ? <button className="btn btn-primary" onClick={(e) => activateProfile(e)}>
             Edit Information
           </button> : <button className='btn btn-primary' onClick={saveAction}>Save Information</button>}
-          
         </div>
       </form>
+      <IncidentsByProfile incidentsByProfile={incidentsByProfile}/>
     </div>
   );
 };

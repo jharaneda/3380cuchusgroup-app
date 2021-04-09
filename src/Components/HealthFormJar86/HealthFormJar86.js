@@ -17,7 +17,7 @@ const HealthFormJar86 = ({ tenants, viewProfile, updateCheck, healthChecks }) =>
               type="checkbox"
               // value={healthChecks.morningCheck}
               id="morning_check"
-              onChange={(e) => updateCheck(e, tenant.room)}
+              onChange={(e) => updateCheck(e, tenant.room, tenant._id)}
             />
           </td>
           <td>
@@ -40,7 +40,7 @@ const HealthFormJar86 = ({ tenants, viewProfile, updateCheck, healthChecks }) =>
           </td>
           <td>
             {/* <Link to='/profile'> */}
-            <button id={tenant.room} className="btn btn-danger" onClick={(e) => viewProfile(e, tenant.room)}><Link to='/profile' role='button' className='btn btn-danger'>View Profile</Link></button>
+            <button id={tenant._id} className="btn btn-danger" onClick={(e) => viewProfile(e, tenant._id)}><Link to='/profile' role='button' className='btn btn-danger'>View Profile</Link></button>
             {/* </Link> */}
           </td>
           

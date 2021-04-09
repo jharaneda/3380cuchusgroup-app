@@ -49,6 +49,7 @@ function App() {
       comments: "",
     },
   ]);
+  const [incidentsByProfile, setIncidentsByProfile] = useState([])
   const [currentIncident, setCurrentIncident] = useState();
   const [queryFilter, setQueryFilter] = useState({ searchBar: "" });
   const [todayDate, setTodayDate] = useState();
@@ -142,15 +143,17 @@ function App() {
     });
   }
   //manage onChange of HealthForm
-  function updateHealthForm(e, room) {
+  function updateHealthForm(e, room, _id) {
     console.log("update health called");
     healthChecks.push({
+      _id: _id,
       room: room,
       date: todayDate, 
       [e.target.id]: e.target.checked,
     })
     setHealthCheck({
       ...healthChecks,
+      _id: _id,
       room: room,
       date: todayDate, 
       [e.target.id]: e.target.checked,
@@ -190,6 +193,7 @@ function App() {
 
   //function that load the tenant profile information
   function activateProfile(e) {
+    console.log(incidents)
     e.preventDefault();
     setProfileInputs({
       name: false,
@@ -204,13 +208,16 @@ function App() {
     });
   }
 
-  //manage onCLick of Health and wellness form "View profile"
-  function viewProfile(e, tenantRoom) {
+  //manage onCLick of Health and wellness form "View profile" button
+  function viewProfile(e, _id) {
     // e.preventDefault();
-    var roomID = tenantRoom;
-    let itemIndex = tenantList.map((index) => index.room).indexOf(roomID);
+    // console.log("id");
+    // console.log(_id);
+    var roomID = _id;
+    let itemIndex = tenantList.map((index) => index._id).indexOf(roomID);
 
     setCurrentTenant({
+      _id: tenantList[itemIndex]._id,
       first_name: tenantList[itemIndex].first_name,
       last_name: tenantList[itemIndex].last_name,
       room: tenantList[itemIndex].room,
@@ -221,6 +228,13 @@ function App() {
       phsycal_description: tenantList[itemIndex].phsycal_description,
       birthdate: tenantList[itemIndex].birthdate,
     });
+
+    let room = tenantList[itemIndex].room;
+    let incidentsProfile = incidents.filter(tenant => tenant.room == room)
+    setIncidentsByProfile(incidentsProfile)
+
+    console.log("incidentsProfile");
+    console.log(incidentsProfile);
     setQueryFilter({ searchBar: "" });
     today();
   }
@@ -323,6 +337,7 @@ function App() {
                 profileInputs={profileInputs}
                 activateProfile={activateProfile}
                 saveAction={updateProfileFunciton}
+                incidentsByProfile={incidentsByProfile}
               />
             )}
           />
