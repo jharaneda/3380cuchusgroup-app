@@ -4,6 +4,11 @@ export async function getTenantList() {
     response.json()
   );
 }
+export async function getHealthReport() {
+  return fetch("http://localhost:8000/health/report").then((response) =>
+    response.json()
+  );
+}
 
 export async function getIncidentReport() {
   return fetch("http://localhost:8000/incident").then((response) =>

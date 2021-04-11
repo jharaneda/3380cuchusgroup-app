@@ -14,6 +14,7 @@ import {
   updateTenantProfile,
   updateHealth,
   getHealth,
+  getHealthReport
 } from "./Components/ServicesJar86/starflowServicesJar86";
 import WeatherWidgetJar86 from "./Components/WeatherWidgetJar86/WeatherWidgetJar86";
 import emailjs from "emailjs-com";
@@ -21,6 +22,7 @@ import emailjs from "emailjs-com";
 function App() {
   //states that will save all the information
   const [tenantList, setTenantList] = useState([]);
+  const [healthReport, setHealthReport] = useState([])
   const [currentTenant, setCurrentTenant] = useState({
     first_name: "",
     last_name: "",
@@ -114,6 +116,15 @@ function App() {
     await fetchWeather()
       .then((json) => {
         setApiWeather(json);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(err);
+      });
+      await getHealthReport()
+      .then((json) => {
+        setHealthReport(json);
         setLoading(false);
       })
       .catch((err) => {
