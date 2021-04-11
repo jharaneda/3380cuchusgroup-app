@@ -26,11 +26,16 @@ const NavbarJar86 = () => {
             </Link>
           </li>
           <li className="nav-item">
+            <Link to="/healthReport" className="nav-link active" aria-current="page">
+              Missing Person Report
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link to="/profile" className="nav-link active" aria-current="page">
               Tenant Profile
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link
               to="/todolist"
               className="nav-link active"
@@ -38,7 +43,7 @@ const NavbarJar86 = () => {
             >
               To Do List
             </Link>
-          </li>
+          </li> */}
           <li className="nav-item">
             <Link to="/incident" className="nav-link active" aria-current="page">
               Incident Report

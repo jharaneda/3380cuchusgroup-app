@@ -18,6 +18,7 @@ import {
 } from "./Components/ServicesJar86/starflowServicesJar86";
 import WeatherWidgetJar86 from "./Components/WeatherWidgetJar86/WeatherWidgetJar86";
 import emailjs from "emailjs-com";
+import HealthReportJar86 from "./Components/HealthReportJar86/HealthReportJar86";
 
 function App() {
   //states that will save all the information
@@ -346,6 +347,13 @@ function App() {
                 onClick={insertHealth}
                 date={todayDate}
               />
+            )}
+          />
+          <Route
+            path="/healthReport"
+            exact
+            render={(props) => (
+              <HealthReportJar86 healthReport={healthReport} viewProfile={viewProfile}/>
             )}
           />
           <Route
