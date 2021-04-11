@@ -12,12 +12,13 @@ import {
   getIncidentReport,
   fetchWeather,
   updateTenantProfile,
+  updateHealth,
+  getHealth,
 } from "./Components/ServicesJar86/starflowServicesJar86";
 import WeatherWidgetJar86 from "./Components/WeatherWidgetJar86/WeatherWidgetJar86";
 import emailjs from "emailjs-com";
 
 function App() {
-
   //states that will save all the information
   const [tenantList, setTenantList] = useState([]);
   const [currentTenant, setCurrentTenant] = useState({
@@ -49,11 +50,12 @@ function App() {
       comments: "",
     },
   ]);
-  const [incidentsByProfile, setIncidentsByProfile] = useState([])
+  const [incidentsByProfile, setIncidentsByProfile] = useState([]);
   const [currentIncident, setCurrentIncident] = useState();
   const [queryFilter, setQueryFilter] = useState({ searchBar: "" });
   const [todayDate, setTodayDate] = useState();
-  const [healthChecks, setHealthCheck] = useState([]);
+  const [healthChecks, setHealthCheck] = useState();
+  const [healthList, setHealthList] = useState();
 
   const [apiWeather, setApiWeather] = useState();
 
@@ -71,10 +73,7 @@ function App() {
 
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
-
-  //history no se si funciona
-  // const history = useHistory();
-
+  
   //useEffect
   useEffect(() => {
     refreshPage();
@@ -82,8 +81,18 @@ function App() {
 
   //get the info from WS -> DB
   async function refreshPage() {
+    // e.preventDefault()
     setLoading(true);
 
+    await getHealth()
+      .then((json) => {
+        setHealthList(json);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(err);
+      });
     await getTenantList()
       .then((json) => {
         setTenantList(json);
@@ -111,7 +120,7 @@ function App() {
         console.log(err);
         setError(err);
       });
-      await today()
+    await today();
   }
 
   //manage onChange of Todo Form
@@ -143,21 +152,20 @@ function App() {
     });
   }
   //manage onChange of HealthForm
-  function updateHealthForm(e, room, _id) {
+  async function updateHealthForm(e, room, _id) {
+    e.preventDefault();
     console.log("update health called");
-    healthChecks.push({
-      _id: _id,
-      room: room,
-      date: todayDate, 
-      [e.target.id]: e.target.checked,
-    })
     setHealthCheck({
-      ...healthChecks,
       _id: _id,
       room: room,
-      date: todayDate, 
-      [e.target.id]: e.target.checked,
+      date: todayDate,
+      [e.target.id]: e.target.value,
     });
+    await updateHealth(healthChecks);
+    await refreshPage(e);
+  }
+  async function insertHealth() {
+    await updateHealth(healthChecks);
   }
 
   //function that update the tenant profile information
@@ -166,7 +174,7 @@ function App() {
     console.log("update profile was called");
     console.log(currentTenant);
     await updateTenantProfile(currentTenant);
-    refreshPage();
+    await refreshPage(e);
   }
 
   //function that send and save the incident report by email
@@ -193,7 +201,7 @@ function App() {
 
   //function that load the tenant profile information
   function activateProfile(e) {
-    console.log(incidents)
+    console.log(incidents);
     e.preventDefault();
     setProfileInputs({
       name: false,
@@ -230,8 +238,8 @@ function App() {
     });
 
     let room = tenantList[itemIndex].room;
-    let incidentsProfile = incidents.filter(tenant => tenant.room == room)
-    setIncidentsByProfile(incidentsProfile)
+    let incidentsProfile = incidents.filter((tenant) => tenant.room == room);
+    setIncidentsByProfile(incidentsProfile);
 
     console.log("incidentsProfile");
     console.log(incidentsProfile);
@@ -249,7 +257,7 @@ function App() {
       priority: "Choose priority",
       comments: "",
     });
-    refreshPage();
+    await refreshPage(e);
   }
 
   async function addIncidentFunction(e) {
@@ -264,7 +272,7 @@ function App() {
       room: "",
       comments: "",
     });
-    refreshPage();
+    await refreshPage(e);
   }
 
   //filter by any field from the tenant list
@@ -317,12 +325,14 @@ function App() {
               <HeaderHealthJar86
                 {...props}
                 tenants={search(tenantList)}
+                healthList={healthList}
                 viewProfile={viewProfile}
                 serchAction={search}
                 value={queryFilter}
                 update={updateSearchBar}
                 updateCheck={updateHealthForm}
                 healthChecks={healthChecks}
+                onClick={insertHealth}
                 date={todayDate}
               />
             )}

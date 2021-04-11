@@ -1,7 +1,7 @@
 import React from "react";
 import HealthFormJar86 from "../HealthFormJar86/HealthFormJar86";
 
-const HeaderHealthJar86 = ({ tenants, viewProfile, update, updateCheck,healthChecks, date }) => {
+const HeaderHealthJar86 = ({ tenants, viewProfile, update, updateCheck,healthChecks, date, onClick, healthList }) => {
   return (
     <form className="checkForm row border-dark border rounded float-start">
       <h1>Health and Wellness Report</h1>
@@ -19,13 +19,13 @@ const HeaderHealthJar86 = ({ tenants, viewProfile, update, updateCheck,healthChe
             <th className="col-1">Room</th>
             <th className="col-1">Name</th>
             <th className="col-1">Birth Date</th>
+            <th className="col-1">Night</th>
             <th className="col-1">Morning</th>
             <th className="col-1">Evening</th>
-            <th className="col-1">Night</th>
             <th className="col-1">View Profile</th>
           </tr>
         </thead>
-        <HealthFormJar86 tenants={tenants} viewProfile={viewProfile} updateCheck={updateCheck} healthChecks={healthChecks}/>
+        <HealthFormJar86 tenants={tenants} viewProfile={viewProfile} updateCheck={updateCheck} healthChecks={healthChecks} onClick={onClick} healthList={healthList}/>
       </table>
     </form>
   );

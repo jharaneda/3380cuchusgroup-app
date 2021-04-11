@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const HealthFormJar86 = ({ tenants, viewProfile, updateCheck, healthChecks }) => {
+const HealthFormJar86 = ({
+  tenants,
+  viewProfile,
+  updateCheck,
+  healthChecks,
+  onClick,
+  healthList
+}) => {
   return (
     <tbody>
       {tenants.map((tenant, key) => (
@@ -12,38 +19,61 @@ const HealthFormJar86 = ({ tenants, viewProfile, updateCheck, healthChecks }) =>
           </td>
           <td>{tenant.birthdate}</td>
           <td>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              // value={healthChecks.morningCheck}
-              id="morning_check"
+            <select
+              id="night"
+              name="night"
+              value={tenant.healthChecks[0].night}
+              className="form-select"
               onChange={(e) => updateCheck(e, tenant.room, tenant._id)}
-            />
+              onClick={(e) => onClick()}
+            >
+              <option>Not seen</option>
+              <option>Seen</option>
+              <option>Call in</option>
+              <option>MPR</option>
+            </select>
           </td>
           <td>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              // value={healthChecks[0].eveningCheck}
-              id="evening_check"
-              onChange={updateCheck}
-            />
+          <select
+              id="morning"
+              name="morning"
+              className="form-select"
+              value={tenant.healthChecks[0].morning}
+              onChange={(e) => updateCheck(e, tenant.room, tenant._id)}
+              onClick={(e) => onClick()}
+            >
+              <option>Not seen</option>
+              <option>Seen</option>
+              <option>Call in</option>
+              <option>MPR</option>
+            </select>
           </td>
           <td>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              // value={healthChecks[0].nightCheck}
-              id="night_check"
-              onChange={updateCheck}
-            />
+          <select
+              id="evening"
+              name="evening"
+              className="form-select"
+              value={tenant.healthChecks[0].evening}
+              onChange={(e) => updateCheck(e, tenant.room, tenant._id)}
+              onClick={(e) => onClick()}
+            >
+              <option>Not seen</option>
+              <option>Seen</option>
+              <option>Call in</option>
+              <option>MPR</option>
+            </select>
           </td>
           <td>
-            {/* <Link to='/profile'> */}
-            <button id={tenant._id} className="btn btn-danger" onClick={(e) => viewProfile(e, tenant._id)}><Link to='/profile' role='button' className='btn btn-danger'>View Profile</Link></button>
-            {/* </Link> */}
+            <button
+              id={tenant._id}
+              className="btn btn-danger"
+              onClick={(e) => viewProfile(e, tenant._id)}
+            >
+              <Link to="/profile" role="button" className="btn btn-danger">
+                View Profile
+              </Link>
+            </button>
           </td>
-          
         </tr>
       ))}
     </tbody>
