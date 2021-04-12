@@ -5,9 +5,7 @@ const HealthFormJar86 = ({
   tenants,
   viewProfile,
   updateCheck,
-  healthChecks,
   onClick,
-  healthList
 }) => {
   return (
     <tbody>
@@ -66,10 +64,10 @@ const HealthFormJar86 = ({
           <td>
             <button
               id={tenant._id}
-              className="btn btn-danger"
+              className="btn btn-info"
               onClick={(e) => viewProfile(e, tenant._id)}
             >
-              <Link to="/profile" role="button" className="btn btn-danger">
+              <Link to="/profile" role="button" className="btn btn-info">
                 View Profile
               </Link>
             </button>

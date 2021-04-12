@@ -88,17 +88,6 @@ const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile,
             Phone number
           </label>
         </div>
-        {/* <div className="col-md-3 form-floating mb-3">
-          <input
-            type="email"
-            className="form-control"
-            placeholder="email@email.com"
-            onChange={update}
-          />
-          <label className="form-label" htmlFor="floatingInput">
-            E-mail
-          </label>
-        </div> */}
         <div className="col-md-3 form-floating mb-3">
           <input
             id="birthdate"

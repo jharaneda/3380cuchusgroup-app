@@ -62,8 +62,6 @@ export async function updateTenantProfile(currentProfile) {
 
 export async function updateHealth(currentHealth) {
   const healthData = JSON.stringify(currentHealth);
-  // console.log("health check desde services")
-  // console.log(healthData)
   return fetch("http://localhost:8000/health", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -72,7 +70,7 @@ export async function updateHealth(currentHealth) {
 }
 
 export async function fetchWeather(){
-  const API_key = "462cd311fd45adffc615072fc4be6ad4"; //baneada
+  const API_key = "462cd311fd45adffc615072fc4be6ad4";
   const URL = `https://api.openweathermap.org/data/2.5/weather?q=Vancouver&appid=${API_key}&units=metric`;
   return fetch(URL)
   .then((response) => response.json())

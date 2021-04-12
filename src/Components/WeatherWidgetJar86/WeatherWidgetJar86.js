@@ -2,8 +2,6 @@ import React from 'react'
 import '../../index.css'
 
 const WeatherWidgetJar86 = ({apiWeather}) => {
-    
-
     return (
         <div className="main-container">
             {apiWeather.main && (

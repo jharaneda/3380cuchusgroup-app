@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
+import { BrowserRouter, Route, Switch} from "react-router-dom";
 import HeaderHealthJar86 from "./Components/HeaderHealthFormJar86.js/HeaderHealthJar86";
 import IncidentFormJar86 from "./Components/IncidentFormJar86/IncidentFormJar86";
 import NavbarJar86 from "./Components/NavbarJar86/NavbarJar86";
 import ProfileFormJar86 from "./Components/ProfileFormJar86/ProfileFormJar86";
-import TodoListFormJar86 from "./Components/TodoListFormJar86/TodoListFormJar86";
 import {
   getTenantList,
-  addTodo,
   addIncident,
   getIncidentReport,
   fetchWeather,
@@ -34,13 +32,6 @@ function App() {
     comments: "",
     phsycal_description: "",
     birthdate: "",
-  });
-  const [todo, setTodo] = useState({});
-  const [newTodo, setNewTodo] = useState({
-    expiration_date: "",
-    room_number: "",
-    priority: "",
-    comments: "",
   });
   const [incidents, setIncidents] = useState([
     {
@@ -77,14 +68,12 @@ function App() {
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
   
-  //useEffect
   useEffect(() => {
     refreshPage();
   }, []);
 
   //get the info from WS -> DB
   async function refreshPage() {
-    // e.preventDefault()
     setLoading(true);
 
     await getHealth()
@@ -135,38 +124,30 @@ function App() {
     await today();
   }
 
-  //manage onChange of Todo Form
-  function updateTodo(e) {
-    setNewTodo({
-      ...newTodo,
-      [e.target.id]: e.target.value,
-    });
-  }
-  //manage onChange of Profile Form
+  //manage onChange of Profile Form (Tenant Profile)
   function updateProfile(e) {
     setCurrentTenant({
       ...currentTenant,
       [e.target.id]: e.target.value,
     });
   }
-  //manage onChange of Incident Form
+  //manage onChange of Incident Form (Incident Report)
   function updateIncident(e) {
     setCurrentIncident({
       ...currentIncident,
       [e.target.id]: e.target.value,
     });
   }
-  //manage onChange of search bar
+  //manage onChange of search bar (Health and wellness)
   function updateSearchBar(e) {
     setQueryFilter({
       ...queryFilter,
       [e.target.id]: e.target.value,
     });
   }
-  //manage onChange of HealthForm
+  //manage onChange of HealthForm (Health and wellness)
   async function updateHealthForm(e, room, _id) {
     e.preventDefault();
-    console.log("update health called");
     setHealthCheck({
       _id: _id,
       room: room,
@@ -176,15 +157,14 @@ function App() {
     await updateHealth(healthChecks);
     await refreshPage(e);
   }
+  //manage onClick of each select item
   async function insertHealth() {
     await updateHealth(healthChecks);
   }
 
-  //function that update the tenant profile information
+  //function that update the tenant profile information (Tenant Profile Save button)
   async function updateProfileFunciton(e) {
     e.preventDefault();
-    console.log("update profile was called");
-    console.log(currentTenant);
     await updateTenantProfile(currentTenant);
     await refreshPage(e);
   }
@@ -192,7 +172,6 @@ function App() {
   //function that send and save the incident report by email
   function sendEmail(e) {
     e.preventDefault();
-
     emailjs
       .send(
         "default_service",
@@ -213,7 +192,6 @@ function App() {
 
   //function that load the tenant profile information
   function activateProfile(e) {
-    console.log(incidents);
     e.preventDefault();
     setProfileInputs({
       name: false,
@@ -230,12 +208,8 @@ function App() {
 
   //manage onCLick of Health and wellness form "View profile" button
   function viewProfile(e, _id) {
-    // e.preventDefault();
-    // console.log("id");
-    // console.log(_id);
     var roomID = _id;
     let itemIndex = tenantList.map((index) => index._id).indexOf(roomID);
-
     setCurrentTenant({
       _id: tenantList[itemIndex]._id,
       first_name: tenantList[itemIndex].first_name,
@@ -250,7 +224,7 @@ function App() {
     });
 
     let room = tenantList[itemIndex].room;
-    let incidentsProfile = incidents.filter((tenant) => tenant.room == room);
+    let incidentsProfile = incidents.filter((tenant) => tenant.room === room);
     setIncidentsByProfile(incidentsProfile);
 
     console.log("incidentsProfile");
@@ -259,19 +233,7 @@ function App() {
     today();
   }
 
-  //Manage the save button of Todo Form
-  async function addTodoFunction(e) {
-    e.preventDefault();
-    await addTodo(newTodo);
-    setNewTodo({
-      expiration_date: "",
-      room_number: "",
-      priority: "Choose priority",
-      comments: "",
-    });
-    await refreshPage(e);
-  }
-
+  //manage the add button in Incident Report
   async function addIncidentFunction(e) {
     e.preventDefault();
     await addIncident(currentIncident);
@@ -287,7 +249,7 @@ function App() {
     await refreshPage(e);
   }
 
-  //filter by any field from the tenant list
+  //filter by any field from the tenant list (Search Bar)
   function search(rows) {
     if (queryFilter.searchBar === "") return tenantList;
     else
@@ -303,12 +265,13 @@ function App() {
   //get today date
   function today() {
     var date = new Date();
+    var formatDate;
     if (date.getMonth() < 10)
-      var formatDate = `${date.getFullYear()}-0${
+      formatDate = `${date.getFullYear()}-0${
         date.getMonth() + 1
       }-${date.getDate()}`;
     else
-      var formatDate = `${date.getFullYear()}-${
+      formatDate = `${date.getFullYear()}-${
         date.getMonth() + 1
       }-${date.getDate()}`;
     setTodayDate(formatDate);
@@ -371,18 +334,6 @@ function App() {
             )}
           />
           <Route
-            path="/todolist"
-            exact
-            render={(props) => (
-              <TodoListFormJar86
-                {...props}
-                update={updateTodo}
-                addAction={addTodoFunction}
-                currentTodo={newTodo}
-              />
-            )}
-          />
-          <Route
             path="/incident"
             exact
             render={(props) => (
@@ -406,5 +357,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

@@ -1,8 +1,5 @@
 import React from "react";
-
-
 const IncidentListJar86 = ({ incidents }) => {
-  
   return (
     <table className="table">
       <thead>
