@@ -43,7 +43,7 @@ const IncidentFormJar86 = ({ update, incidents, sendEmail, addAction }) => {
                     className="form-select"
                     onChange={update}
                   >
-                    <option>Choose type...</option>
+                    <option selected>Choose type...</option>
                     <option>Missing Persons Report</option>
                     <option>Ambulance request by Resident</option>
                     <option>Medical concern (not OD-related)</option>

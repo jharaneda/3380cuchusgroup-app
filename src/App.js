@@ -245,10 +245,6 @@ function App() {
     let incidentsProfile = incidents.filter((tenant) => tenant.room == room);
     
     setIncidentsByProfile(incidentsProfile);
-
-    console.log("incidentsProfile");
-    console.log(incidentsProfile);
-    console.log(room);
     setQueryFilter({ searchBar: "" });
     today();
   }

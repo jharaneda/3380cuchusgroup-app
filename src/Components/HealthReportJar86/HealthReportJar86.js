@@ -5,8 +5,8 @@ const HealthReportJar86 = ({ healthReport, viewProfile }) => {
   return (
     <table className="table">
       <thead>
-        <tr><h1>Missing Person Report</h1></tr>
-        <tr><h3>Tenants that haven't been seen the last 3 days</h3></tr>
+        <tr><td><h1>Missing Person Report</h1></td></tr>
+        <tr><td><h3>Tenants that haven't been seen the last 3 days</h3></td></tr>
         <tr>
           <th>Full Name</th>
           <th>Room</th>
