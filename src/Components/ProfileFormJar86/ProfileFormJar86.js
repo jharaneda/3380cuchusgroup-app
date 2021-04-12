@@ -2,7 +2,7 @@ import React from "react";
 import profileImage from "../Images/profile.png";
 import IncidentsByProfile from "../IncidentsByProfile/IncidentsByProfile";
 
-const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile, saveAction, incidentsByProfile }) => {
+const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile, saveAction, incidentsByProfile, deleteAction }) => {
   return (
     <div className="row border-dark border rounded float-start">
       <form className="row g-3">
@@ -49,7 +49,7 @@ const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile,
         <div className="col-md-2 form-floating mb-3">
           <input
             id="room"
-            disabled={profileInputs.room}
+            disabled="disabled"
             type="text"
             className="form-control"
             placeholder="200"
@@ -139,7 +139,7 @@ const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile,
             placeholder="Physical description..."
             style={{ height: "100px" }}
             onChange={update}
-            value={curreTenant.phsycal_description}
+            value={curreTenant.physical_description}
           ></textarea>
           <label htmlFor="floatingTextarea" className="form-label ">
             Physical description
@@ -149,6 +149,10 @@ const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile,
           {(profileInputs.description === true) ? <button className="btn btn-primary" onClick={(e) => activateProfile(e)}>
             Edit Information
           </button> : <button className='btn btn-primary' onClick={saveAction}>Save Information</button>}
+          <button className='btn btn-danger' onClick={deleteAction}>Delete Profile</button>
+        </div>
+        <div className="col-12">
+          
         </div>
       </form>
       <IncidentsByProfile incidentsByProfile={incidentsByProfile}/>

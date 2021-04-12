@@ -12,7 +12,8 @@ import {
   updateTenantProfile,
   updateHealth,
   getHealth,
-  getHealthReport
+  getHealthReport,
+  deleteProfile
 } from "./Components/ServicesJar86/starflowServicesJar86";
 import WeatherWidgetJar86 from "./Components/WeatherWidgetJar86/WeatherWidgetJar86";
 import emailjs from "emailjs-com";
@@ -30,7 +31,7 @@ function App() {
     phone: "",
     meds_taken: "",
     comments: "",
-    phsycal_description: "",
+    physical_description: "",
     birthdate: "",
   });
   const [incidents, setIncidents] = useState([
@@ -168,6 +169,10 @@ function App() {
     await updateTenantProfile(currentTenant);
     await refreshPage(e);
   }
+  async function deleteProfileFunction() {
+    await deleteProfile(currentTenant);
+    await refreshPage();
+  }
 
   //function that send and save the incident report by email
   function sendEmail(e) {
@@ -219,7 +224,7 @@ function App() {
       phone: tenantList[itemIndex].phone,
       meds_taken: tenantList[itemIndex].meds_taken,
       comments: tenantList[itemIndex].comments,
-      phsycal_description: tenantList[itemIndex].phsycal_description,
+      physical_description: tenantList[itemIndex].physical_description,
       birthdate: tenantList[itemIndex].birthdate,
     });
 
@@ -330,6 +335,7 @@ function App() {
                 activateProfile={activateProfile}
                 saveAction={updateProfileFunciton}
                 incidentsByProfile={incidentsByProfile}
+                deleteAction={deleteProfileFunction}
               />
             )}
           />
