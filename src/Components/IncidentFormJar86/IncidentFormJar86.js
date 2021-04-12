@@ -43,7 +43,7 @@ const IncidentFormJar86 = ({ update, incidents, sendEmail, addAction }) => {
                     className="form-select"
                     onChange={update}
                   >
-                    <option selected>Choose type...</option>
+                    <option>Choose type...</option>
                     <option>Missing Persons Report</option>
                     <option>Ambulance request by Resident</option>
                     <option>Medical concern (not OD-related)</option>
@@ -73,7 +73,7 @@ const IncidentFormJar86 = ({ update, incidents, sendEmail, addAction }) => {
                 </td>
               </tr>
               <tr>
-              <td className="col-md-2 form-floating mb-2">
+                <td className="col-md-2 form-floating mb-2">
                   <select
                     id="VPD_called"
                     name="VPD_called"
@@ -83,7 +83,9 @@ const IncidentFormJar86 = ({ update, incidents, sendEmail, addAction }) => {
                     <option>Yes</option>
                     <option selected>No</option>
                   </select>
-                  <label htmlFor="floatingSelect" className="form-label">911 Called?</label>
+                  <label htmlFor="floatingSelect" className="form-label">
+                    911 Called?
+                  </label>
                 </td>
                 <td className="col-md-2 form-floating mb-2">
                   <input
@@ -114,14 +116,24 @@ const IncidentFormJar86 = ({ update, incidents, sendEmail, addAction }) => {
               </tr>
               <tr>
                 <td className="col-md-3 form-floating mb-3" colSpan="5">
-                  <button className="btn btn-primary" onClick={(e) => addAction(e)}>
+                  <button
+                    className="btn btn-primary"
+                    onClick={(e) => addAction(e)}
+                  >
                     Save Information
                   </button>
                 </td>
               </tr>
               <tr>
-              <td className="col-md-3 form-floating mb-3" colSpan="5">
-                  <button type="submit" className="btn btn-primary" onClick={(e) => sendEmail(e)} value='send'>Save & Send by email</button>
+                <td className="col-md-3 form-floating mb-3" colSpan="5">
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    onClick={(e) => sendEmail(e)}
+                    value="send"
+                  >
+                    Save & Send by email
+                  </button>
                 </td>
               </tr>
             </tbody>
