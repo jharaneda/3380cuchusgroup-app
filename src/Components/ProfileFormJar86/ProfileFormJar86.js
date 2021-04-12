@@ -133,13 +133,13 @@ const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile,
         </div>
         <div className="col-md-10 form-floating mb-3">
           <textarea
-            id="physical_description"
+            id="description"
             disabled={profileInputs.description}
             className="form-control"
             placeholder="Physical description..."
             style={{ height: "100px" }}
             onChange={update}
-            value={curreTenant.physical_description}
+            value={curreTenant.description}
           ></textarea>
           <label htmlFor="floatingTextarea" className="form-label ">
             Physical description
@@ -149,7 +149,7 @@ const ProfileFormJar86 = ({ curreTenant, update, profileInputs, activateProfile,
           {(profileInputs.description === true) ? <button className="btn btn-primary" onClick={(e) => activateProfile(e)}>
             Edit Information
           </button> : <button className='btn btn-primary' onClick={saveAction}>Save Information</button>}
-          <button className='btn btn-danger' onClick={deleteAction}>Delete Profile</button>
+          <button className='btn btn-danger' onClick={(e) => deleteAction(e)}>Delete Profile</button>
         </div>
         <div className="col-12">
           

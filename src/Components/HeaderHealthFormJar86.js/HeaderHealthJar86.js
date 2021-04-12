@@ -4,9 +4,10 @@ import HealthFormJar86 from "../HealthFormJar86/HealthFormJar86";
 const HeaderHealthJar86 = ({ tenants, viewProfile, update, updateCheck,healthChecks, date, onClick, healthList }) => {
   return (
     <form className="checkForm row border-dark border rounded float-start">
-      <h1>Health and Wellness Report</h1>
+      
       <table className="table">
         <thead>
+          <tr><td colSpan='5'><h1>Health and Wellness Report</h1></td></tr>
           <tr>
             <td colSpan='2'><h3>Today date: {date}</h3></td>
           </tr>

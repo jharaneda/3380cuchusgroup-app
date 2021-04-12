@@ -31,7 +31,7 @@ function App() {
     phone: "",
     meds_taken: "",
     comments: "",
-    physical_description: "",
+    description: "",
     birthdate: "",
   });
   const [incidents, setIncidents] = useState([
@@ -169,8 +169,21 @@ function App() {
     await updateTenantProfile(currentTenant);
     await refreshPage(e);
   }
-  async function deleteProfileFunction() {
+  async function deleteProfileFunction(e) {
+    e.preventDefault();
     await deleteProfile(currentTenant);
+    setCurrentTenant({
+      _id: '',
+      first_name: '',
+      last_name: '',
+      room: '',
+      floor: '',
+      phone: '',
+      meds_taken: '',
+      comments: '',
+      description: '',
+      birthdate: '',
+    });
     await refreshPage();
   }
 
@@ -224,16 +237,18 @@ function App() {
       phone: tenantList[itemIndex].phone,
       meds_taken: tenantList[itemIndex].meds_taken,
       comments: tenantList[itemIndex].comments,
-      physical_description: tenantList[itemIndex].physical_description,
+      description: tenantList[itemIndex].description,
       birthdate: tenantList[itemIndex].birthdate,
     });
 
     let room = tenantList[itemIndex].room;
-    let incidentsProfile = incidents.filter((tenant) => tenant.room === room);
+    let incidentsProfile = incidents.filter((tenant) => tenant.room == room);
+    
     setIncidentsByProfile(incidentsProfile);
 
     console.log("incidentsProfile");
     console.log(incidentsProfile);
+    console.log(room);
     setQueryFilter({ searchBar: "" });
     today();
   }
